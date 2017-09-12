@@ -3,7 +3,7 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 # If running this code on IOTIFY,change TRIG to 5 and ECHO to 6
-TRIG = 2 
+TRIG = 2
 ECHO = 3
 
 print "Distance Measurement In Progress"
@@ -20,10 +20,10 @@ time.sleep(0.00001)
 GPIO.output(TRIG, False)
 
 while GPIO.input(ECHO)==0:
-	pulse_start = time.time()
+    pulse_start = time.time()
 
 while GPIO.input(ECHO)==1:
-	pulse_end = time.time()
+    pulse_end = time.time()
 
 pulse_duration = pulse_end - pulse_start
 
