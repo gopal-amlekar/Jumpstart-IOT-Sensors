@@ -5,21 +5,26 @@ import time
 
 STEP_PIN = 7
 DIR_PIN = 8
+
 M1_PIN = 9
 M0_PIN = 10
+CONFIG_PIN = 17
+
+NENBL_PIN = 15
 
 NSLEEP_PIN = 11
 NFAULT_PIN = 14
-NENBL_PIN = 15
-CONFIG_PIN = 17
+
+
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
+# Alter these to change the steps and angular movment of the motor
 steps = 20
 micro_step = 1.0 / 4 #Possible values: 1.0, 1.0/2, 1.0/4, 1.0/8, 1.0/16, 1.0/32
 
-print "Motor rotation by %g steps " % (steps / micro_step)
+print "Motor rotation by %g Micro steps " % (steps / micro_step)
 
 GPIO.setup(STEP_PIN, GPIO.OUT)
 GPIO.setup(DIR_PIN, GPIO.OUT)
@@ -35,6 +40,7 @@ GPIO.output(NSLEEP_PIN, True)   #Enable device
 
 time.sleep(0.001)
 
+# Wait till the fault is recovered, if any
 while GPIO.input(NFAULT_PIN)==0:
 	time.sleep(0.001)
 
